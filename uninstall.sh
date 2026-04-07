@@ -17,18 +17,12 @@ EOF
 )
 
 BASHRC="$HOME/.bashrc"
-touch "$BASHRC"
 
-if ! grep -qF "$START_MARK" "$BASHRC"; then
-    printf "\n%s\n" "$BLOCK" >> "$BASHRC"
+if grep -qF "$START_MARK" "$BASHRC"; then
+    sed -i.bak "/$START_MARK/,/$END_MARK/d" "$BASHRC"
 fi
 
 while read -r SRC DST; do
     DST="${DST/#\~/$HOME}"
-    mkdir -p $(dirname "$DST")
-    ln -sfn "$DOTFILES_DIR/$SRC" "$DST"
+    rm "$DST"
 done < "$DOTFILES_DIR/links.txt"
-
-if [ -d ~/.emacs.d/ ]; then
-    rm -rf ~/.emacs.d/
-fi

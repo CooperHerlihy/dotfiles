@@ -1,0 +1,5 @@
+bash ~/.config/bash
+scripts ~/.config/scripts
+tmux ~/.config/tmux
+nvim ~/.config/nvim
+emacs ~/.config/emacs

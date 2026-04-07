@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: notes [push] [pull]"
+    exit 1
+fi
+
+if [ "$1" == "pull" ]; then
+    cd ~/notes
+    git pull
+fi
+
+if [ "$1" == "push" ]; then
+    cd ~/notes
+    git add .
+    git commit -m "$(date)"
+    git push
+fi
+
