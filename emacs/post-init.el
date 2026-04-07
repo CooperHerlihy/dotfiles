@@ -53,15 +53,13 @@
 ;; Package navigation and interaction
 (use-package projectile
   :init
-  (setq projectile-cleanup-known-projects t)
+  ;; (setq projectile-cleanup-known-projects t)
+  (setq projectile-auto-discover t)
   (cond
-   ((eq system-type 'qnu/linux)
-    (setq projectile-project-search-path (list (expand-file-name "~/dev/")
-                                               (expand-file-name "~/notes/"))))
    ((eq system-type 'windows-nt)
-    (setq projectile-project-search-path (list (expand-file-name "~/.emacs.d/")
-                                               (expand-file-name "c:/dev/")
-                                               (format "%s/notes/" (getenv "userprofile"))))))
+    (setq projectile-project-search-path (list "c:/dev" (format "%s/notes" (getenv "USERPROFILE")))))
+   (t
+    (setq projectile-project-search-path '("~/dev" "~/notes"))))
   :bind (:map projectile-mode-map
               ("C-c p" . 'projectile-command-map))
   :config
@@ -93,8 +91,8 @@
 ;; Vim emulation
 (use-package evil
   :hook ((text-mode . evil-local-mode)
-         (conf-mode . evil-local-mode)
-         (prog-mode . evil-local-mode))
+         (prog-mode . evil-local-mode)
+         (conf-mode . evil-local-mode))
   :init
   (setq evil-undo-system 'undo-fu)
 
@@ -129,7 +127,6 @@
   :init
   (setq-default evil-escape-key-sequence "kj")
   (setq-default evil-escape-delay 0.2))
-  ;; :config (evil-escape-mode 1)) ; enable globally
 
 ;; vim-surround emulation
 (use-package evil-surround
@@ -139,8 +136,8 @@
 ;; Strip trailing whitespace on save
 (use-package stripspace
   :hook ((text-mode . stripspace-local-mode)
-         (conf-mode . stripspace-local-mode)
-         (prog-mode . stripspace-local-mode))
+         (prog-mode . stripspace-local-mode)
+         (conf-mode . stripspace-local-mode))
   :custom
   (stripspace-only-if-initially-clean nil))
 
@@ -182,8 +179,8 @@
 
 ;;; Section | File Type Support
 
-;; Automatically install treesitter grammars and prefer lang-ts-mode
 (unless (eq system-type 'windows-nt)
+  ;; Automatically install treesitter grammars and prefer lang-ts-mode
   (use-package treesit-auto
     :custom
     (treesit-auto-install 'prompt)
@@ -226,7 +223,6 @@
 
   :init
   (add-hook 'vterm-mode-hook #'my-vterm--setup)
-
   (setq vterm-timer-delay 0.05)
   (setq vterm-kill-buffer-on-exit t)
   (setq vterm-max-scrollback 5000))
@@ -247,12 +243,10 @@
   (add-hook hook #'display-line-numbers-mode))
 
 ;; Modeline
-
 (setq line-number-mode t)
 (setq column-number-mode t)
 
 ;; Color theme (temporary, will write custom)
-
 (use-package doom-themes
   :custom
   ;; Global settings (defaults)
