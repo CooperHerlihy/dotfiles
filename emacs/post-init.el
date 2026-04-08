@@ -66,15 +66,12 @@
   (projectile-mode +1)
   (add-hook 'project-find-functions #'project-projectile))
 
-;; Ripgrep for projectile
+;; ripgrep for projectile
 (use-package rg)
 
 ;;; Section | Editing
 
 (electric-pair-mode +1) ; Auto insert paren/brace/bracket pairs
-
-;; Does this work?
-(use-package dtrt-indent) ; Automatically set indentation like vim-sleuth
 
 ;; Provide linear undo for evil
 (use-package undo-fu
@@ -123,15 +120,43 @@
 
 ;; kj leaves insert mode
 (use-package evil-escape
-  :hook (evil-local-mode . evil-escape-mode) ; enable in evil buffers
+  :hook (evil-local-mode . evil-escape-mode)
   :init
   (setq-default evil-escape-key-sequence "kj")
   (setq-default evil-escape-delay 0.2))
 
 ;; vim-surround emulation
 (use-package evil-surround
-  :after evil
   :hook (evil-local-mode . evil-surround-mode))
+
+;; go to definition without lsp
+(use-package dumb-jump
+  :commands dumb-jump-xref-activate
+  :init
+  ;; Register `dumb-jump' as an xref backend so it integrates with
+  ;; `xref-find-definitions'. A priority of 90 ensures it is used only when no
+  ;; more specific backend is available.
+  (add-hook 'xref-backend-functions #'dumb-jump-xref-activate 90)
+
+  (setq dumb-jump-aggressive nil)
+  ;; (setq dumb-jump-quiet t)
+
+  ;; Number of seconds a rg/grep/find command can take before being warned to
+  ;; use ag and config.
+  (setq dumb-jump-max-find-time 3)
+
+  ;; Use `completing-read' so that selection of jump targets integrates with the
+  ;; active completion framework (e.g., Vertico, Ivy, Helm, Icomplete),
+  ;; providing a consistent minibuffer-based interface whenever multiple
+  ;; definitions are found.
+  (setq dumb-jump-selector 'completing-read)
+
+  ;; If ripgrep is available, force `dumb-jump' to use it because it is
+  ;; significantly faster and more accurate than the default searchers (grep,
+  ;; ag, etc.).
+  (when (executable-find "rg")
+    (setq dumb-jump-force-searcher 'rg)
+    (setq dumb-jump-prefer-searcher 'rg)))
 
 ;; Strip trailing whitespace on save
 (use-package stripspace
