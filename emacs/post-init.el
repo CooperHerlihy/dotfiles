@@ -250,12 +250,7 @@
  (t
   (use-package vterm
     :if (bound-and-true-p module-file-suffix)
-    :commands (vterm
-               vterm-send-string
-               vterm-send-return
-               vterm-send-key
-               vterm-module-compile)
-
+    :bind ("C-c t" . 'vterm)
     :preface
     (when noninteractive
       ;; vterm unnecessarily triggers compilation of vterm-module.so upon loading.
