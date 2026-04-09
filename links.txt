@@ -1,5 +1,9 @@
+dotfiles-resources ~/.config/dotfiles-resources
 bash ~/.config/bash
-scripts ~/.config/scripts
+kitty ~/.config/kitty
+hypr ~/.config/hypr
+waybar ~/.config/waybar
 tmux ~/.config/tmux
 nvim ~/.config/nvim
 emacs ~/.config/emacs
+scripts ~/.config/scripts

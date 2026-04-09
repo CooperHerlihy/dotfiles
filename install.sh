@@ -29,6 +29,14 @@ while read -r SRC DST; do
     ln -sfn "$DOTFILES_DIR/$SRC" "$DST"
 done < "$DOTFILES_DIR/links.txt"
 
+while read -r SRC DST; do
+    DST="${DST/#\~/$HOME}"
+    mkdir -p $(dirname "$DST")
+    if [ ! -d  "$DST" ]; then
+        cp -r "$DOTFILES_DIR/$SRC" "$DST"
+    fi
+done < "$DOTFILES_DIR/copies.txt"
+
 if [ -d ~/.emacs.d/ ]; then
     rm -rf ~/.emacs.d/
 fi

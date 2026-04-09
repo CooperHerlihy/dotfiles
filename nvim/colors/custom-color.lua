@@ -6,12 +6,12 @@ vim.o.background = "dark"
 vim.o.termguicolors = true
 
 local background = "#010316" -- "NvimDarkGrey2"
-local highlight = "#4f4d64" -- "NvimDarkGrey4"
 local semihighlight = "#2c2a3a" -- "NvimDarkGrey3"
+local highlight = "#4f4d64" -- "NvimDarkGrey4"
 
 local text = "#efefff" -- "NvimLightGrey2"
 local comment = "#7b7895" -- "NvimLightGrey4"
-local nontext = "#44415a" -- "NvimDarkGrey3"
+local nontext = "#4f4d64" -- "NvimDarkGrey3"
 
 local accent1 = "#deb1ff" -- "NvimLightCyan"
 local accent2 = "#9b8bf8" -- "NvimLightBlue"

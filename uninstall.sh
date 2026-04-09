@@ -26,3 +26,11 @@ while read -r SRC DST; do
     DST="${DST/#\~/$HOME}"
     rm "$DST"
 done < "$DOTFILES_DIR/links.txt"
+
+while read -r SRC DST; do
+    DST="${DST/#\~/$HOME}"
+    mkdir -p $(dirname "$DST")
+    if [ -d  "$DST" ]; then
+        rm -rf "$DST"
+    fi
+done < "$DOTFILES_DIR/copies.txt"

@@ -1,0 +1,1 @@
+dotfiles-device ~/.config/dotfiles-device

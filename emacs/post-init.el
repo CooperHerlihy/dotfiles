@@ -4,6 +4,19 @@
 
 (add-to-list 'load-path "~/.emacs.d/")
 
+;; The system app launcher
+(defun my-emacs-launcher ()
+  "Create a temporary frame as an app launcher"
+  (interactive)
+  (with-selected-frame
+    (make-frame '((name . "emacs-launcher")
+                  (minibuffer . only)
+                  (fullscreen . 0)
+                  (undecorated . t)))
+                  (unwind-protect
+                    (app-launcher-run-app)
+                    (delete-frame))))
+
 ;; Automatically update packages at regular intervals
 (use-package auto-package-update
   :custom
@@ -15,7 +28,6 @@
   (auto-package-update-maybe)) ; Run at startup if the interval has been elapsed
 
 (setq package-install-upgrade-built-in t) ; Allow emacs to upgrade built-in packages
-
 ;; Save the minbuffer history across sessions
 (use-package savehist
   :ensure nil
@@ -92,14 +104,12 @@
          (conf-mode . evil-local-mode))
   :init
   (setq evil-undo-system 'undo-fu)
-
-  :custom
-  (evil-ex-search-vim-style-regexp t) ; Use Vim-style regular expressions
-  (evil-split-window-below t) ; Enable automatic horizontal split below
-  (evil-vsplit-window-right t) ; Enable automatic vertical split to the right
-  (evil-echo-state nil) ; Disable echoing Evil state to avoid replacing eldoc
-  (evil-want-C-u-scroll t) ; Enable C-u to scroll up in normal mode
-  (evil-want-Y-yank-to-eol t) ; Whether Y yanks to the end of the line
+  (setq evil-ex-search-vim-style-regexp t) ; Use Vim-style regular expressions
+  (setq evil-split-window-below t) ; Enable automatic horizontal split below
+  (setq evil-vsplit-window-right t) ; Enable automatic vertical split to the right
+  (setq evil-echo-state nil) ; Disable echoing Evil state to avoid replacing eldoc
+  (setq evil-want-C-u-scroll t) ; Enable C-u to scroll up in normal mode
+  (setq evil-want-Y-yank-to-eol t) ; Whether Y yanks to the end of the line
 
   :config
 
@@ -129,7 +139,6 @@
 (use-package evil-surround
   :hook (evil-local-mode . evil-surround-mode))
 
-;; go to definition without lsp
 (use-package dumb-jump
   :commands dumb-jump-xref-activate
   :init
@@ -204,21 +213,27 @@
 
 ;;; Section | File Type Support
 
-(unless (eq system-type 'windows-nt)
-  ;; Automatically install treesitter grammars and prefer lang-ts-mode
-  (use-package treesit-auto
-    :custom
-    (treesit-auto-install 'prompt)
-    :config
-    (treesit-auto-add-to-auto-mode-alist 'all)
-    (global-treesit-auto-mode)))
-
-(use-package glsl-mode)
-
 (setq-default fill-column 80)
 (add-hook `text-mode-hook `turn-on-auto-fill)
 
 (use-package markdown-mode)
+
+;; c-indent-comment-alist, c-indent-comments-syntactically-p (see Indentation Commands);
+;; c-doc-comment-style (see Documentation Comments);
+;; c-block-comment-prefix, c-comment-prefix-regexp (see Customizing Filling and Line Breaking);
+;; c-hanging-braces-alist (see Hanging Braces);
+;; c-hanging-colons-alist (see Hanging Colons);
+;; c-hanging-semi&comma-criteria (see Hanging Semicolons and Commas);
+;; c-cleanup-list (see Clean-ups);
+(setq c-basic-offset 4)
+;; c-offsets-alist (see c-offsets-alist);
+;; c-comment-only-line-offset (see Comment Line-Up Functions);
+;; c-special-indent-hook, c-label-minimum-indentation (see Other Special Indentations);
+;; c-backslash-column, c-backslash-max-column (see Customizing Macros).
+
+(use-package lua-mode)
+
+(use-package glsl-mode)
 
 ;;; Section | Language Support
 
@@ -257,7 +272,7 @@
 
 ;;; Section | Aesthetics
 
-(add-to-list 'default-frame-alist '(fullscreen . fullboth)) ; Default to fullscreen
+;; (add-to-list 'default-frame-alist '(fullscreen . fullboth)) ; Default to fullscreen
 
 ;; Configure the default face
 (if (find-font (font-spec :name "JetBrainsMono NF"))
