@@ -243,31 +243,31 @@
 (use-package magit
   :bind ("C-x g" . magit-status))
 
-;; A terminal emulator written in C
-(cond
- ((eq system-type 'windows-nt)
-  (global-set-key (kbd "C-c t") 'eshell))
- (t
-  (use-package vterm
-    :if (bound-and-true-p module-file-suffix)
-    :bind ("C-c t" . 'vterm)
-    :preface
-    (when noninteractive
-      ;; vterm unnecessarily triggers compilation of vterm-module.so upon loading.
-      ;; This prevents that during byte-compilation (`use-package' eagerly loads
-      ;; packages when compiling).
-      (advice-add #'vterm-module-compile :override #'ignore))
-
-    (defun my-vterm--setup ()
-      (setq mode-line-format nil) ; Hide the mode-line
-      (setq-local hscroll-margin 0) ; Inhibit early horizontal scrolling
-      (setq-local confirm-kill-processes nil)) ; Suppress prompt for terminating active processes
-
-    :init
-    (add-hook 'vterm-mode-hook #'my-vterm--setup)
-    (setq vterm-timer-delay 0.05)
-    (setq vterm-kill-buffer-on-exit t)
-    (setq vterm-max-scrollback 5000))))
+;; (cond
+;;  ((eq system-type 'windows-nt)
+;;   (global-set-key (kbd "C-c t") 'eshell))
+;;  (t
+;;   ;; A terminal emulator written in C
+;;   (use-package vterm
+;;     :if (bound-and-true-p module-file-suffix)
+;;     :bind ("C-c t" . 'vterm)
+;;     :preface
+;;     (when noninteractive
+;;       ;; vterm unnecessarily triggers compilation of vterm-module.so upon loading.
+;;       ;; This prevents that during byte-compilation (`use-package' eagerly loads
+;;       ;; packages when compiling).
+;;       (advice-add #'vterm-module-compile :override #'ignore))
+;;
+;;     (defun my-vterm--setup ()
+;;       (setq mode-line-format nil) ; Hide the mode-line
+;;       (setq-local hscroll-margin 0) ; Inhibit early horizontal scrolling
+;;       (setq-local confirm-kill-processes nil)) ; Suppress prompt for terminating active processes
+;;
+;;     :init
+;;     (add-hook 'vterm-mode-hook #'my-vterm--setup)
+;;     (setq vterm-timer-delay 0.05)
+;;     (setq vterm-kill-buffer-on-exit t)
+;;     (setq vterm-max-scrollback 5000))))
 
 ;;; Section | Aesthetics
 
@@ -299,3 +299,7 @@
 
   ;; Corrects (and improves) org-mode's native fontification.
   (doom-themes-org-config))
+
+(use-package xdg-launcher
+  :vc (:url "https://github.com/emacs-exwm/xdg-launcher")
+  :commands (app-launcher-run-app xdg-launcher-run-app))

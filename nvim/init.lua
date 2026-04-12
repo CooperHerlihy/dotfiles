@@ -100,7 +100,7 @@ map("<leader>c", function()
     MiniPick.builtin.files(nil, {source = {cwd = "~/.config/nvim/", name = "Config"}})
 end, {desc = "Search Neovim config"})
 
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.config").setup({
     auto_install = true,
     highlight = {enable = true},
 })

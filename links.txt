@@ -1,4 +1,5 @@
-dotfiles-resources ~/.config/dotfiles-resources
+nixos/configuration.nix /etc/nixos/configuration.nix
+nixos/flake.nix /etc/nixos/flake.nix
 bash ~/.config/bash
 kitty ~/.config/kitty
 hypr ~/.config/hypr
@@ -7,3 +8,4 @@ tmux ~/.config/tmux
 nvim ~/.config/nvim
 emacs ~/.config/emacs
 scripts ~/.config/scripts
+dotfiles-resources ~/.config/dotfiles-resources
