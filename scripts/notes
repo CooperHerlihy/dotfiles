@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ $# -ne 1 ]; then
     echo "Usage: notes [push] [pull]"
@@ -16,4 +16,3 @@ if [ "$1" == "push" ]; then
     git commit -m "$(date)"
     git push
 fi
-

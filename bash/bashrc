@@ -1,5 +1,4 @@
 export PATH=$PATH:~/.config/scripts
-export XDG_RUNTIME_DIR=~/.config/
 export EDITOR=emacs
 
 alias nv='nvim'

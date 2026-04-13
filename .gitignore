@@ -1,2 +1,4 @@
-emacs/var/
+nixos/hardware-configuration.nix
+nixos/flake.lock
 nvim/nvim-pack-lock.json
+emacs/var/

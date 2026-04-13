@@ -1,5 +1,4 @@
-nixos/configuration.nix /etc/nixos/configuration.nix
-nixos/flake.nix /etc/nixos/flake.nix
+nixos ~/.config/nixos
 bash ~/.config/bash
 kitty ~/.config/kitty
 hypr ~/.config/hypr
