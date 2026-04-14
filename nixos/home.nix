@@ -45,12 +45,23 @@
     # };
 
     # programs.tmux.enable = true;
-    # programs.vim.enable = true;
-    # programs.neovim.enable = true;
 
-    programs.emacs.enable = true;
-    programs.emacs.package = pkgs.emacs-pgtk;
-    home.file.".config/emacs".source = config.lib.file.mkOutOfStoreSymlink "${../emacs}";
+    programs.vim.enable = true;
+
+    programs.neovim.enable = true;
+    home.file.".config/nvim" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${../nvim}";
+        recursive = true;
+    };
+
+    programs.emacs = {
+        enable = true;
+        package = pkgs.emacs-pgtk;
+    };
+    home.file.".config/emacs" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${../emacs}";
+        recursive = true;
+    };
 
     # programs.firefox.enable = true;
 

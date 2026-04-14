@@ -39,9 +39,7 @@
 
     programs.git.enable = true;
     programs.tmux.enable = true;
-    programs.vim.enable = true;
-    programs.neovim.enable = true;
-    # services.emacs.enable = true;
+    # programs.neovim.enable = true;
 
     programs.firefox.enable = true;
     services.tor.enable = true;
