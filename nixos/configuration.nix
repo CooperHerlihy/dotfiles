@@ -37,9 +37,7 @@
     # services.hypridle.enable = true;
     # programs.hyprlock.enable = true;
 
-    programs.git.enable = true;
-    programs.tmux.enable = true;
-    # programs.neovim.enable = true;
+    # programs.git.enable = true;
 
     programs.firefox.enable = true;
     services.tor.enable = true;

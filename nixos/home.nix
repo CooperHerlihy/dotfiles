@@ -33,18 +33,22 @@
     #     enable = true;
     # };
 
-    # programs.git = {
-    #     enable = true;
-    #     settings = {
-    #         init.defaultBranch = "main";
-    #         user = {
-    #             name = "CooperHerlihy";
-    #             email = "cooper.herlihy@gmail.com";
-    #         };
-    #     };
-    # };
+    programs.git = {
+        enable = true;
+        settings = {
+            init.defaultBranch = "main";
+            user = {
+                name = "CooperHerlihy";
+                email = "cooper.herlihy@gmail.com";
+            };
+        };
+    };
 
-    # programs.tmux.enable = true;
+    programs.tmux.enable = true;
+    home.file.".config/tmux" = {
+        source = config.lib.file.mkOutOfStoreSymlink "${../tmux}";
+        recursive = true;
+    };
 
     programs.vim.enable = true;
 
