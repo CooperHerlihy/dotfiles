@@ -1,21 +1,41 @@
-{ config, pkgs, ... }: {
+{ inputs, config, lib, pkgs, ... }:
+{
     imports = [
         ./hardware-configuration.nix
+        inputs.home-manager.nixosModules.home-manager
     ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nixpkgs.config.allowUnfree = true;
 
-    # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    nix = {
+        settings.experimental-features = [ "nix-command" "flakes" ];
 
-    networking.hostName = "herlihy";
-    # networking.wireless.enable = true;    # Enables wireless support via wpa_supplicant.
+        gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 7d";
+        };
+    };
 
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+    home-manager = {
+        extraSpecialArgs = { inherit inputs; };
+        users.herlihy = import ./home.nix;
+    };
 
-    networking.networkmanager.enable = true;
+    networking = {
+        hostName = "nixos";
+
+        networkmanager.enable = true;
+
+        # proxy.default = "http://user:password@proxy:port/";
+        # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+
+        # Open ports in the firewall.
+        # firewall.allowedTCPPorts = [ ... ];
+        # firewall.allowedUDPPorts = [ ... ];
+        # Or disable the firewall altogether.
+        # firewall.enable = false;
+    };
 
     time.timeZone = "America/New_York";
 
@@ -32,10 +52,48 @@
         LC_TIME = "en_US.UTF-8";
     };
 
-    services.printing.enable = true;
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
-    services.pulseaudio.enable = false;
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+    };
+
+    hardware.nvidia = {
+        modesetting.enable = true;
+
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
+
+        open = true;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        prime = {
+            amdgpuBusId = "PCI:6:0:0";
+            nvidiaBusId = "PCI:1:0:0";
+        };
+    };
+
+    hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+    };
+
     security.rtkit.enable = true;
+
+    services.xserver = {
+        enable = true;
+        videoDrivers = lib.mkDefault [ "nvidia" ];
+
+        # Enable touchpad support (enabled default in most desktopManager).
+        # libinput.enable = true;
+
+        xkb.layout = "us";
+        xkb.variant = "";
+    };
+
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -44,83 +102,10 @@
         # jack.enable = true;
     };
 
-    hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
-    };
+    services.printing.enable = true;
 
-    # hardware.nvidia = {
-    #     modesetting.enable = true;
-    #
-    #     nvidiaSettings = true;
-    #     open = false;
-    #     package = config.boot.kernel.Packages.nvidiaPackages.stable;
-    #
-    #     powerManagement.enable = true;
-    #     powerManagerment.finegrained = false;
-    # };
-
-    services.xserver = {
-        # Enable the X11 windowing system.
-        enable = true;
-
-        # Enable touchpad support (enabled default in most desktopManager).
-        # libinput.enable = true;
-
-        # videoDrivers = [ "nvidia" ];
-
-        # Configure keymap in X11
-        xkb.layout = "us";
-        xkb.variant = "";
-    };
-
-    # services.displayManager.gdm.enable = true;
-    # services.desktopManager.gnome.enable = true;
-
-    # xdg.portal = {
-    #     enable = true;
-    #     extraPortals = [
-    #         pkgs.xdg-desktop-portal-gtk
-    #     ];
-    #     config.common.default = "*";
-    # };
-
-    users.users.herlihy = {
-        isNormalUser = true;
-        description = "Herlihy";
-        extraGroups = [ "networkmanager" "wheel" ];
-        packages = with pkgs; [];
-    };
-
-    nixpkgs.config.allowUnfree = true;
-
-    environment.systemPackages = with pkgs; [
-        kitty
-        gcc
-        gnumake
-        cmake
-        libtool
-        gh
-        wofi
-        hyprpaper
-    ];
-
-    programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
-    };
-
-    programs.git.enable = true;
-    programs.tmux.enable = true;
-    programs.vim.enable = true;
-    programs.neovim.enable = true;
-    programs.firefox.enable = true;
-
-    services.emacs = {
-        enable = true;
-        defaultEditor = true;
-    };
+    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
@@ -130,26 +115,45 @@
     #     enableSSHSupport = true;
     # };
 
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
+    services.hypridle.enable = true;
 
-    # Open ports in the firewall.
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
-    # Or disable the firewall altogether.
-    # networking.firewall.enable = false;
+    services.emacs.enable = true;
 
-    # nix.gc = {
-    #     automatic = true;
-    #     date = "daily";
-    #     options = "--delete-older-than 3d";
-    # };
+    programs.hyprland = {
+        enable = true;
+        withUWSM = true;
+        xwayland.enable = true;
+    };
+    programs.hyprlock.enable = true;
 
-    # This value determines the NixOS release from which the default
-    # settings for stateful data, like file locations and database versions
-    # on your system were taken. It‘s perfectly fine and recommended to leave
-    # this value at the release version of the first install of this system.
-    # Before changing this value read the documentation for this option
-    # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-    system.stateVersion = "25.11"; # Did you read the comment?
+    programs.git.enable = true;
+    programs.tmux.enable = true;
+    programs.vim.enable = true;
+    programs.neovim.enable = true;
+    programs.firefox.enable = true;
+
+    environment.systemPackages = with pkgs; [
+        kitty
+
+        gcc
+        gnumake
+        cmake
+        gh
+
+        mako
+        wofi
+        hyprpaper
+
+        libtool
+    ];
+
+    users.users.herlihy = {
+        isNormalUser = true;
+        description = "Herlihy";
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [];
+    };
+
+    system.stateVersion = "25.11";
 }
+

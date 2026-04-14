@@ -56,7 +56,7 @@ map("n", "nzzzv", {desc = "Next match and center"})
 map("N", "Nzzzv", {desc = "Previous match and center"})
 
 map("<esc>", vim.cmd.nohlsearch, {desc = "Clear search highlight"})
-map("<leader>e", vim.cmd.Ex, {desc = "Open Netrw"})
+-- map("<leader>e", vim.cmd.Ex, {desc = "Open Netrw"})
 map("<leader>l", function()
     vim.cmd.source(vim.fn.stdpath('config') .. '/init.lua')
 end, {desc = "reload config"})
@@ -78,6 +78,7 @@ vim.pack.add({
     "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     "https://github.com/mason-org/mason.nvim",
     "https://github.com/neovim/nvim-lspconfig",
+    "https://github.com/stevearc/oil.nvim",
 })
 
 require("mini.comment").setup()
@@ -127,5 +128,12 @@ map("<leader>i", function()
 end, {desc = "Toggle LSP inlay hints"})
 
 require("mason").setup()
+
+require("oil").setup({
+    view_options = {
+        show_hidden = true,
+    },
+})
+map("<leader>e", vim.cmd.Oil, {desc = "Open Oil"})
 
 vim.cmd.colorscheme("custom-color")
