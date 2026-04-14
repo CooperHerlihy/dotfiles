@@ -17,10 +17,49 @@
         };
     };
 
+    users.users.herlihy = {
+        isNormalUser = true;
+        description = "Herlihy";
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [];
+    };
+
     home-manager = {
         extraSpecialArgs = { inherit inputs; };
         users.herlihy = import ./home.nix;
     };
+
+    programs.hyprland = {
+        enable = true;
+        withUWSM = true;
+        xwayland.enable = true;
+    };
+
+    services.hypridle.enable = true;
+    programs.hyprlock.enable = true;
+
+    programs.git.enable = true;
+    programs.tmux.enable = true;
+    programs.vim.enable = true;
+    programs.neovim.enable = true;
+    services.emacs.enable = true;
+    programs.firefox.enable = true;
+
+    environment.systemPackages = with pkgs; [
+        kitty
+
+        gcc
+        gnumake
+        cmake
+        gh
+        unzip
+
+        mako
+        wofi
+        hyprpaper
+
+        libtool
+    ];
 
     networking = {
         hostName = "nixos";
@@ -37,23 +76,16 @@
         # firewall.enable = false;
     };
 
-    time.timeZone = "America/New_York";
+    services.xserver = {
+        enable = true;
+        videoDrivers = lib.mkDefault [ "nvidia" ];
 
-    i18n.defaultLocale = "en_US.UTF-8";
-    i18n.extraLocaleSettings = {
-        LC_ADDRESS = "en_US.UTF-8";
-        LC_IDENTIFICATION = "en_US.UTF-8";
-        LC_MEASUREMENT = "en_US.UTF-8";
-        LC_MONETARY = "en_US.UTF-8";
-        LC_NAME = "en_US.UTF-8";
-        LC_NUMERIC = "en_US.UTF-8";
-        LC_PAPER = "en_US.UTF-8";
-        LC_TELEPHONE = "en_US.UTF-8";
-        LC_TIME = "en_US.UTF-8";
+        # Enable touchpad support (enabled default in most desktopManager).
+        # libinput.enable = true;
+
+        xkb.layout = "us";
+        xkb.variant = "";
     };
-
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
 
     hardware.graphics = {
         enable = true;
@@ -83,17 +115,6 @@
 
     security.rtkit.enable = true;
 
-    services.xserver = {
-        enable = true;
-        videoDrivers = lib.mkDefault [ "nvidia" ];
-
-        # Enable touchpad support (enabled default in most desktopManager).
-        # libinput.enable = true;
-
-        xkb.layout = "us";
-        xkb.variant = "";
-    };
-
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -104,55 +125,23 @@
 
     services.printing.enable = true;
 
-    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
+    time.timeZone = "America/New_York";
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
-    # programs.mtr.enable = true;
-    # programs.gnupg.agent = {
-    #     enable = true;
-    #     enableSSHSupport = true;
-    # };
-
-    services.hypridle.enable = true;
-
-    services.emacs.enable = true;
-
-    programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.extraLocaleSettings = {
+        LC_ADDRESS = "en_US.UTF-8";
+        LC_IDENTIFICATION = "en_US.UTF-8";
+        LC_MEASUREMENT = "en_US.UTF-8";
+        LC_MONETARY = "en_US.UTF-8";
+        LC_NAME = "en_US.UTF-8";
+        LC_NUMERIC = "en_US.UTF-8";
+        LC_PAPER = "en_US.UTF-8";
+        LC_TELEPHONE = "en_US.UTF-8";
+        LC_TIME = "en_US.UTF-8";
     };
-    programs.hyprlock.enable = true;
 
-    programs.git.enable = true;
-    programs.tmux.enable = true;
-    programs.vim.enable = true;
-    programs.neovim.enable = true;
-    programs.firefox.enable = true;
-
-    environment.systemPackages = with pkgs; [
-        kitty
-
-        gcc
-        gnumake
-        cmake
-        gh
-
-        mako
-        wofi
-        hyprpaper
-
-        libtool
-    ];
-
-    users.users.herlihy = {
-        isNormalUser = true;
-        description = "Herlihy";
-        extraGroups = [ "networkmanager" "wheel" ];
-        packages = with pkgs; [];
-    };
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
     system.stateVersion = "25.11";
 }
