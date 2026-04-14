@@ -1,4 +1,3 @@
-nixos ~/.config/nixos
 bash ~/.config/bash
 kitty ~/.config/kitty
 hypr ~/.config/hypr

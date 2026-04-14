@@ -9,7 +9,6 @@
 
     nix = {
         settings.experimental-features = [ "nix-command" "flakes" ];
-
         gc = {
             automatic = true;
             dates = "weekly";
@@ -35,30 +34,29 @@
         xwayland.enable = true;
     };
 
-    services.hypridle.enable = true;
-    programs.hyprlock.enable = true;
+    # services.hypridle.enable = true;
+    # programs.hyprlock.enable = true;
 
     programs.git.enable = true;
     programs.tmux.enable = true;
     programs.vim.enable = true;
     programs.neovim.enable = true;
-    services.emacs.enable = true;
+    # services.emacs.enable = true;
+
     programs.firefox.enable = true;
+    services.tor.enable = true;
 
     environment.systemPackages = with pkgs; [
         kitty
-
         gcc
         gnumake
         cmake
         gh
         unzip
-
         mako
         wofi
         hyprpaper
-
-        libtool
+        tor-browser
     ];
 
     networking = {
