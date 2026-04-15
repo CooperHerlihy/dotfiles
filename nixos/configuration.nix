@@ -16,6 +16,8 @@
         };
     };
 
+    environment.systemPackages = with pkgs; [];
+
     users.users.herlihy = {
         isNormalUser = true;
         description = "Herlihy";
@@ -28,32 +30,11 @@
         users.herlihy = import ./home.nix;
     };
 
-    programs.hyprland = {
-        enable = true;
-        withUWSM = true;
-        xwayland.enable = true;
-    };
-
-    # services.hypridle.enable = true;
-    # programs.hyprlock.enable = true;
-
-    # programs.git.enable = true;
-
-    programs.firefox.enable = true;
-    services.tor.enable = true;
-
-    environment.systemPackages = with pkgs; [
-        kitty
-        gcc
-        gnumake
-        cmake
-        gh
-        unzip
-        mako
-        wofi
-        hyprpaper
-        tor-browser
-    ];
+    # programs.hyprland = {
+    #     enable = true;
+    #     withUWSM = true;
+    #     xwayland.enable = true;
+    # };
 
     networking = {
         hostName = "nixos";
@@ -73,9 +54,6 @@
     services.xserver = {
         enable = true;
         videoDrivers = lib.mkDefault [ "nvidia" ];
-
-        # Enable touchpad support (enabled default in most desktopManager).
-        # libinput.enable = true;
 
         xkb.layout = "us";
         xkb.variant = "";
@@ -102,11 +80,6 @@
         };
     };
 
-    hardware.bluetooth = {
-        enable = true;
-        powerOnBoot = true;
-    };
-
     security.rtkit.enable = true;
 
     services.pipewire = {
@@ -115,6 +88,11 @@
         alsa.support32Bit = true;
         pulse.enable = true;
         # jack.enable = true;
+    };
+
+    hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = true;
     };
 
     services.printing.enable = true;
