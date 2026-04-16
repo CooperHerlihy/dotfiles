@@ -2,16 +2,84 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ lib, config, pkgs, ... }:
 
 {
     imports = [ ./hardware-configuration.nix ];
 
-    nix.settings.experimental-features = [ "nix-command" "flakes" ];
+    nix = {
+        settings.experimental-features = [ "nix-command" "flakes" ];
+        gc = {
+            automatic = true;
+            dates = "weekly";
+            options = "--delete-older-than 7d";
+        };
+    };
 
-    # Bootloader.
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    nixpkgs.config.allowUnfree = true;
+
+    users.users.herlihy = {
+        isNormalUser = true;
+        description = "herlihy";
+        extraGroups = [ "networkmanager" "wheel" ];
+        packages = with pkgs; [
+            hyprpaper
+            libnotify
+            mako
+            waybar
+            wofi
+
+            stow
+            tmux
+            neovim
+
+            unzip
+            git
+            gh
+            gcc
+            gnumake
+            cmake
+
+            firefox
+            tor-browser
+
+            nestopia-ue
+            zsnes
+        ];
+    };
+
+    environment.systemPackages = with pkgs; [
+        kitty
+    ];
+
+    services.xserver = {
+        enable = true;
+        videoDrivers = lib.mkDefault [ "nvidia" ];
+
+        xkb.layout = "us";
+        xkb.variant = "";
+
+        displayManager.lightdm.enable = true;
+    };
+
+    programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+    };
+
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+    };
+
+    security.rtkit.enable = true;
+    services.pipewire = {
+        enable = true;
+        alsa.enable = true;
+        alsa.support32Bit = true;
+        pulse.enable = true;
+        # jack.enable = true;
+    };
 
     networking = {
         hostName = "nixos";
@@ -24,6 +92,12 @@
         networkmanager.enable = true;
     };
 
+    hardware.bluetooth = {
+        enable = true;
+        powerOnBoot = true;
+    };
+
+    services.printing.enable = true;
     time.timeZone = "America/New_York";
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
@@ -38,51 +112,24 @@
         LC_TIME = "en_US.UTF-8";
     };
 
-    services.xserver = {
-        enable = true;
+    hardware.nvidia = {
+        modesetting.enable = true;
 
-        xkb.layout = "us";
-        xkb.variant = "";
+        powerManagement.enable = false;
+        powerManagement.finegrained = false;
 
-        displayManager.lightdm.enable = true;
+        open = true;
+        nvidiaSettings = true;
+        package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+        prime = {
+            amdgpuBusId = "PCI:6:0:0";
+            nvidiaBusId = "PCI:1:0:0";
+        };
     };
 
-    programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-    };
-
-    users.users.herlihy = {
-        isNormalUser = true;
-        description = "herlihy";
-        extraGroups = [ "networkmanager" "wheel" ];
-        packages = with pkgs; [
-            hyprpaper
-            waybar
-            wofi
-
-            stow
-            tmux
-            neovim
-            emacs-pgtk
-
-            git
-            gh
-            gcc
-            gnumake
-            cmake
-
-            firefox
-        ];
-    };
-
-    nixpkgs.config.allowUnfree = true;
-
-    # List packages installed in system profile. To search, run:
-    # $ nix search wget
-    environment.systemPackages = with pkgs; [
-        kitty
-    ];
+    boot.loader.systemd-boot.enable = true;
+    boot.loader.efi.canTouchEfiVariables = true;
 
     # Some programs need SUID wrappers, can be configured further or are
     # started in user sessions.
