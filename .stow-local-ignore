@@ -1,0 +1,9 @@
+\.git
+\.gitignore
+
+^/README.*
+^/LICENSE.*
+
+\resources
+\nixos
+\windows

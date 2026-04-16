@@ -1,9 +1,0 @@
-bash ~/.config/bash
-kitty ~/.config/kitty
-hypr ~/.config/hypr
-waybar ~/.config/waybar
-tmux ~/.config/tmux
-nvim ~/.config/nvim
-emacs ~/.config/emacs
-scripts ~/.config/scripts
-dotfiles-resources ~/.config/dotfiles-resources
