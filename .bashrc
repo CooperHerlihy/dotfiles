@@ -1,5 +1,5 @@
 export PATH=$PATH:~/.config/scripts
-export EDITOR=emacs
+export EDITOR=nvim
 
 alias nv='nvim'
 alias ta='tmux attach'
