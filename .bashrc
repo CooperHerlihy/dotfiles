@@ -1,10 +1,10 @@
-export PATH=$PATH:~/.config/scripts
+export PATH=$PATH:~/dotfiles/scripts
 export EDITOR=nvim
 
-alias nv='nvim'
-alias tm='tmux attach || tmux new'
 alias ta='tmux attach'
 alias tn='tmux new'
+alias tm='tmux attach || tmux new'
+alias nv='nvim'
 
 DEFAULT='\[\e[0m\]'
 ACCENT1='\[\e[38;2;222;177;255m\]'

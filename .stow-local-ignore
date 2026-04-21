@@ -1,9 +1,10 @@
 \.git
 \.gitignore
 
+resources
+scripts
+nixos
+windows
+
 ^/README.*
 ^/LICENSE.*
-
-\resources
-\nixos
-\windows

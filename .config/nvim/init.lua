@@ -58,7 +58,7 @@ map("N", "Nzzzv", {desc = "Previous match and center"})
 map("<esc>", vim.cmd.nohlsearch, {desc = "Clear search highlight"})
 -- map("<leader>e", vim.cmd.Ex, {desc = "Open Netrw"})
 map("<leader>l", function()
-    vim.cmd.source(vim.fn.stdpath('config') .. '/init.lua')
+    vim.cmd.source(vim.fn.stdpath("config") .. "/init.lua")
 end, {desc = "reload config"})
 
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -98,7 +98,7 @@ map("<leader>n", function()
     MiniPick.builtin.files(nil, {source = {cwd = "~/notes/", name = "Notes"}})
 end, {desc = "Search notes"})
 map("<leader>c", function()
-    MiniPick.builtin.files(nil, {source = {cwd = "~/.config/nvim/", name = "Config"}})
+    MiniPick.builtin.files(nil, {source = {cwd = vim.fn.stdpath("config"), name = "Config"}})
 end, {desc = "Search Neovim config"})
 
 require("nvim-treesitter.config").setup({
