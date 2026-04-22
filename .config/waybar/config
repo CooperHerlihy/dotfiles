@@ -3,12 +3,10 @@
     "position": "top",
     "height": 25,
 
-    "modules-left": [],
-    "modules-center": [],
-    "modules-right": ["memory", "cpu", "clock"],
+    "modules-center": ["clock", "memory", "cpu"],
 
     "clock": {
-        "format": "  {:%H:%M %a %Y-%m-%d}"
+        "format": "  {:%Y-%m-%d %a %H:%M}"
     },
 
     "memory": {

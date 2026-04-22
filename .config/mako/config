@@ -15,7 +15,7 @@ border-size=2
 border-radius=6
 
 format=<b>%a ⏵</b> %s\n%b
-font=JetBrains Mono 12
+font=JetBrainsMono Nerd Font 12
 padding=18,18,18,18
 
 background-color=#010316
