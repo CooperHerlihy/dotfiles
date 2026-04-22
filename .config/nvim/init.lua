@@ -83,23 +83,32 @@ vim.pack.add({
 
 require("mini.comment").setup()
 require("mini.icons").setup()
-require("mini.pick").setup()
 require("mini.extra").setup()
+require("mini.pick").setup()
+
+local function pick_files(cwd)
+    return MiniPick.builtin.cli({
+        command = {"rg", "--files", "--follow", "--hidden", "--glob", "!.git"};
+    }, {
+        source = {
+            name = cwd,
+            cwd = cwd,
+            show = function(buf_id, items, query)
+                MiniPick.default_show(buf_id, items, query, {show_icons = true})
+            end,
+        },
+    });
+end
 
 map("<leader>.", MiniPick.builtin.resume, {desc = "Resume search/grep"})
-map("<leader>f", MiniPick.builtin.files, {desc = "Fuzzy find files"})
 map("<leader>t", MiniPick.builtin.buffers, {desc = "Search tabs (open buffers)"})
 map("<leader>g", MiniPick.builtin.grep_live, {desc = "Grep in cwd"})
 map("<leader>h", MiniPick.builtin.help, {desc = "Search help"})
 map("<leader>d", MiniExtra.pickers.diagnostic, {desc = "Search diagnostics"})
 map("<leader>s", MiniExtra.pickers.spellsuggest, {desc = "Search spelling"})
-
-map("<leader>n", function()
-    MiniPick.builtin.files(nil, {source = {cwd = "~/notes/", name = "Notes"}})
-end, {desc = "Search notes"})
-map("<leader>c", function()
-    MiniPick.builtin.files(nil, {source = {cwd = vim.fn.stdpath("config"), name = "Config"}})
-end, {desc = "Search Neovim config"})
+map("<leader>f", function() pick_files(vim.fn.getcwd()) end, {desc = "Fuzzy find files"})
+map("<leader>n", function() pick_files(vim.fn.expand("~/notes/")) end, {desc = "Search notes"})
+map("<leader>c", function() pick_files(vim.fn.stdpath("config")) end, {desc = "Search Neovim config"})
 
 require("nvim-treesitter.config").setup({
     auto_install = true,
