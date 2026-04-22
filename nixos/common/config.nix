@@ -69,4 +69,8 @@
 
     programs.steam.enable = true;
     programs.gamemode.enable = true;
+
+    fonts.packages = with pkgs; [
+        nerd-fonts.jetbrains-mono
+    ];
 }

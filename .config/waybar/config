@@ -1,0 +1,21 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 25,
+
+    "modules-left": [],
+    "modules-center": [],
+    "modules-right": ["memory", "cpu", "clock"],
+
+    "clock": {
+        "format": "  {:%H:%M %a %Y-%m-%d}"
+    },
+
+    "memory": {
+        "format": "  {used}G"
+    },
+
+    "cpu": {
+        "format": "  {usage}%"
+    }
+}
