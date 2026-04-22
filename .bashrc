@@ -1,8 +1,6 @@
 export PATH=$PATH:~/dotfiles/scripts
 export EDITOR=nvim
 
-alias ta='tmux attach'
-alias tn='tmux new'
 alias tm='tmux attach || tmux new'
 alias nv='nvim'
 

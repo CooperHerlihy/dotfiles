@@ -1,0 +1,36 @@
+max-visible=5
+layer=overlay
+sort=-time
+default-timeout=5000
+
+on-button-left=dismiss
+on-button-right=dismiss-all
+on-button-middle=none
+
+anchor=top-right
+margin=18,18,12,18
+width=420
+
+border-size=2
+border-radius=6
+
+format=<b>%a ⏵</b> %s\n%b
+font=JetBrains Mono 12
+padding=18,18,18,18
+
+background-color=#010316
+border-color=#4f4d64
+text-color=#efefff
+progress-color=#9b8bf8
+
+[urgency=low]
+border-color=#4f4d64
+text-color=#7b7895
+
+[urgency=normal]
+border-color=#4f4d64
+text-color=#deb1ff
+
+[urgency=critical]
+border-color=#f9bca4
+text-color=#f9bca4

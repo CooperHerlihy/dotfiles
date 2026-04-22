@@ -1,5 +1,17 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }: {
     nixpkgs.config.allowUnfree = true;
+
+    # services.getty.autologinUser = "herlihy";
+    programs.bash.interactiveShellInit = ''
+        if [ "$(tty)" = "/dev/tty1" ] && [ -z "$WAYLAND_DISPLAY" ]; then
+            start-hyprland
+        fi
+    '';
+
+    programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
+    };
 
     environment.systemPackages = with pkgs; [
         # desktop environment
@@ -54,19 +66,6 @@
     ];
 
     # services.openssh.enable = true;
-
-    # services.getty.autologinUser = "herlihy";
-
-    programs.bash.interactiveShellInit = ''
-        if [ "$(tty)" = "/dev/tty1" ] && [ -z "$WAYLAND_DISPLAY" ]; then
-            start-hyprland
-        fi
-    '';
-
-    programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-    };
 
     programs.steam.enable = true;
     programs.gamemode.enable = true;
