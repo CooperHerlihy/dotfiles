@@ -36,6 +36,7 @@
         playerctl
         # clipboard?
         # screenshots?
+        nautilus
 
         # cli tools
         stow
@@ -69,6 +70,7 @@
         aseprite
         firefox
         tor-browser
+        discord
 
         # games
         steam
