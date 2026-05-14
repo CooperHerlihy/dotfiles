@@ -49,13 +49,22 @@
         fzf
 
         # dev tools
-        gdb
-        lldb
-        renderdoc
+        gnumake
         valgrind
         perf
-        vulkan-tools
+
+        gcc
+        cmake
+        gdb
+        lldb
         clang-tools
+
+        renderdoc
+        vulkan-tools
+
+        ghc
+        cabal-install
+        haskell-language-server
 
         # terminal programs
         kitty
