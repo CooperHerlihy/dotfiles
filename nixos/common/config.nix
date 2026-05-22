@@ -4,6 +4,7 @@
     # services.openssh.enable = true;
 
     # services.getty.autologinUser = "herlihy";
+
     programs.bash.interactiveShellInit = ''
         if [ "$(tty)" = "/dev/tty1" ] && [ -z "$WAYLAND_DISPLAY" ]; then
             start-hyprland
