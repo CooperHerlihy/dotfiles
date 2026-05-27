@@ -81,6 +81,7 @@
         firefox
         tor-browser
         discord
+        spotify
 
         # games
         steam
