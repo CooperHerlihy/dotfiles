@@ -5,7 +5,7 @@
 }
 
 window#waybar {
-    background-color: rgba(1, 3, 22, 0.6);
+    background-color: rgba(3, 1, 22, 0.6);
     border-bottom: 1px solid rgba(1, 3, 22, 0.9);;
     padding: 0 12px;
 }
@@ -13,19 +13,19 @@ window#waybar {
 #cpu,
 #memory,
 #clock {
-    background-color: rgba(1, 3, 22, 0.6);
+    background-color: rgba(3, 1, 22, 0.6);
     padding: 0 12px;
 }
 
 #clock {
-    color: #9b8bf8;
+    color: #a488f6;
 }
 
 #memory {
-    color: #7b7895;
+    color: #796d81;
 }
 
 #cpu {
-    color: #7b7895;
+    color: #796d81;
 }
 

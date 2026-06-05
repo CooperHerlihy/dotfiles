@@ -1,12 +1,10 @@
 vim.opt.confirm = true
-vim.schedule(function()
-    vim.opt.clipboard:append("unnamedplus")
-end)
 vim.opt.undofile = true
 vim.opt.backup = false
 vim.opt.swapfile = false
 vim.opt.updatetime = 150
 vim.opt.timeoutlen = 500
+vim.opt.clipboard:append("unnamedplus")
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -146,4 +144,4 @@ require("oil").setup({
 })
 map("<leader>e", vim.cmd.Oil, {desc = "Open Oil"})
 
-vim.cmd.colorscheme("custom-color")
+vim.cmd.colorscheme("custom-dark")

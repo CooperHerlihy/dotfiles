@@ -18,18 +18,18 @@ format=<b>%a ⏵</b> %s\n%b
 font=JetBrainsMono Nerd Font 12
 padding=18,18,18,18
 
-background-color=#010316
-border-color=#4f4d64
-text-color=#efefff
-progress-color=#9b8bf8
+background-color=#0e0216
+border-color=#563a60
+text-color=#f9ecff
+progress-color=#a488f6
 
 [urgency=low]
-border-color=#4f4d64
-text-color=#7b7895
+border-color=#563a60
+text-color=#796d81
 
 [urgency=normal]
-border-color=#4f4d64
-text-color=#deb1ff
+border-color=#563a60
+text-color=#f2b7ff
 
 [urgency=critical]
 border-color=#f9bca4
