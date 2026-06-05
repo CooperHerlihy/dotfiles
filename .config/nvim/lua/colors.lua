@@ -121,11 +121,11 @@ M.setColorScheme = function(name, colors)
         ["DiagnosticOk"] = {fg = colors.ok},
         ["DiagnosticDeprecated"] = {sp = colors.error},
 
-        ["DiagnosticUnderlineError"] = {sp = colors.error},
-        ["DiagnosticUnderlineWarn"] = {sp = colors.warn},
-        ["DiagnosticUnderlineInfo"] = {sp = colors.info},
-        ["DiagnosticUnderlineHint"] = {sp = colors.hint},
-        ["DiagnosticUnderlineOk"] = {sp = colors.ok},
+        ["DiagnosticUnderlineError"] = {underline = true, sp = colors.error},
+        ["DiagnosticUnderlineWarn"] = {underline = true, sp = colors.warn},
+        ["DiagnosticUnderlineInfo"] = {underline = true, sp = colors.info},
+        ["DiagnosticUnderlineHint"] = {underline = true, sp = colors.hint},
+        ["DiagnosticUnderlineOk"] = {underline = true, sp = colors.ok},
 
         -- Plugins
 
