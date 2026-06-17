@@ -82,6 +82,7 @@
         tor-browser
         discord
         spotify
+        anki
 
         # games
         steam
