@@ -1,31 +1,127 @@
-* {
-    font-family: "JetBrainsMono Nerd Font";
-    font-size: 14px;
-    color: #efefff;
-}
-
 window#waybar {
-    background-color: rgba(3, 1, 22, 0.6);
-    border-bottom: 1px solid rgba(1, 3, 22, 0.9);;
-    padding: 0 12px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 13px;
+    background-color: rgba(14, 2, 22, 0.75);
+    color: #f9ecff;
+    transition-property: background-color;
+    transition-duration: 0.2s;
 }
 
-#cpu,
-#memory,
-#clock {
-    background-color: rgba(3, 1, 22, 0.6);
-    padding: 0 12px;
+/* --- power --- */
+#custom-power {
+    font-size: 16px;
+    color: #f2b7ff;
+    padding: 0 16px 0 12px;
 }
 
+#custom-power:hover {
+    color: #f9bca4;
+}
+
+/* --- clock --- */
 #clock {
     color: #a488f6;
 }
 
-#memory {
+/* --- mpris --- */
+#mpris {
+    padding: 0 10px;
+    color: #a488f6;
+}
+
+#mpris.paused {
     color: #796d81;
 }
 
-#cpu {
+/* --- notification --- */
+#custom-notification {
+    padding: 0 10px;
+    font-size: 14px;
+    color: #f2b7ff;
+}
+
+#custom-notification.dnd-notification,
+#custom-notification.dnd-none {
     color: #796d81;
 }
 
+#custom-notification.none {
+    color: #796d81;
+}
+
+/* --- pulseaudio --- */
+#pulseaudio {
+    padding: 0 10px;
+    color: #f2b7ff;
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+#pulseaudio * {
+    font-family: "JetBrainsMono Nerd Font";
+}
+
+#pulseaudio.muted {
+    color: #796d81;
+}
+
+/* --- network --- */
+#network {
+    padding: 0 10px;
+    color: #f2b7ff;
+}
+
+#network.disconnected {
+    color: #796d81;
+}
+
+/* --- system group --- */
+#temperature {
+    margin-left: 6px;
+}
+
+#cpu,
+#memory,
+#temperature {
+    padding: 0 8px;
+    color: #796d81;
+}
+
+#temperature.critical {
+    color: #f9bca4;
+}
+
+/* --- tray --- */
+#tray {
+    padding: 0 8px;
+}
+
+#tray menu {
+    background-color: #0e0216;
+    border: 1px solid #563a60;
+    border-radius: 6px;
+}
+
+#tray menuitem {
+    color: #f9ecff;
+}
+
+#tray menuitem:hover {
+    background-color: #563a60;
+}
+
+/* --- tooltips --- */
+tooltip {
+    background-color: #0e0216;
+    border: 1px solid #563a60;
+    border-radius: 6px;
+    padding: 6px;
+}
+
+tooltip label {
+    color: #f9ecff;
+}
+
+/* --- group separators --- */
+#group-system {
+    padding: 0 4px;
+}

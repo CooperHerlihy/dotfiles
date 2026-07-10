@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [ $# -ne 1 ]; then
-    echo "Usage: notes [push] [pull]"
+    echo "Usage: notes {push|pull}"
     exit 1
 fi
 
@@ -13,6 +13,7 @@ fi
 if [ "$1" == "push" ]; then
     cd ~/notes
     git add .
-    git commit -m "$(date)"
+    git diff --cached --stat | tail -1
+    git commit -m "notes: $(date)"
     git push
 fi

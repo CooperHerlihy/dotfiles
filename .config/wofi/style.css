@@ -11,12 +11,17 @@ window {
 
 #input {
     margin-bottom: 8px;
-    padding: 6px;
+    padding: 8px 12px;
     background-color: #2e1d38;
     color: #f9ecff;
-    border: none;
+    border: 1px solid #563a60;
+    border-radius: 6px;
     outline: none;
     box-shadow: none;
+}
+
+#input:focus {
+    border-color: #a488f6;
 }
 
 #entry {

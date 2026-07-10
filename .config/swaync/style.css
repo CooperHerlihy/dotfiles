@@ -1,0 +1,117 @@
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 14px;
+}
+
+.notification-row {
+  outline: none;
+}
+
+.notification-row:focus,
+.notification-row:hover {
+  background: #2e1d38;
+}
+
+.notification {
+  border: 2px solid #563a60;
+  border-radius: 6px;
+  margin: 8px 14px;
+  background: #0e0216;
+}
+
+.notification.low {
+  border-color: #563a60;
+}
+
+.notification.critical {
+  border-color: #f9bca4;
+}
+
+.notification-content {
+  background: #0e0216;
+  padding: 12px;
+}
+
+.notification-content image {
+  margin-right: 10px;
+}
+
+.title {
+  color: #f2b7ff;
+}
+
+.summary {
+  color: #f9ecff;
+}
+
+.body {
+  color: #f9ecff;
+}
+
+.time {
+  color: #796d81;
+}
+
+.control-center {
+  background: #0e0216;
+  border: none;
+  border-radius: 0;
+}
+
+.control-center-list {
+  background: #0e0216;
+}
+
+.control-center-list-placeholder {
+  color: #796d81;
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.control-center-list-placeholder image {
+  -gtk-icon-transform: scale(0);
+}
+
+.floating-notifications {
+  background: transparent;
+}
+
+.widget-title {
+  color: #f2b7ff;
+  margin: 8px;
+  font-weight: bold;
+}
+
+.widget-title button {
+  color: #a488f6;
+}
+.widget-volume {
+  background: transparent;
+  margin: 6px 12px;
+  padding: 4px 8px;
+}
+
+.widget-volume label {
+  color: #f2b7ff;
+  font-size: 14px;
+}
+
+.widget-volume trough slider {
+  background: #f2b7ff;
+  border-radius: 8px;
+  min-height: 8px;
+  min-width: 8px;
+}
+
+.widget-volume trough {
+  background: #563a60;
+  border-radius: 8px;
+  min-height: 6px;
+}
+
+.widget-volume trough highlight {
+  background: #a488f6;
+  border-radius: 8px;
+}
+

@@ -1,6 +1,10 @@
 export PATH=$PATH:~/dotfiles/scripts
 export EDITOR=nvim
 
+alias ls='ls --color=auto'
+alias ll='ls -lahF --color=auto'
+alias l='ls -lFh --color=auto'
+
 alias tm='tmux attach || tmux new'
 alias nv='nvim'
 

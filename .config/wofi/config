@@ -1,13 +1,13 @@
 normal_window=true
 
 show=drun
-term=kitty
+term=ghostty
 
 matching=fuzzy
 insensitive=true
 
-use_search_box=false
-prompt=
+use_search_box=true
+prompt=Search
 
 width=20%
 lines=8

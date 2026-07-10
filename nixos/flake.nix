@@ -1,6 +1,4 @@
 {
-    description = "NixOS Config";
-
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     };
@@ -9,8 +7,8 @@
         nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             system = "x86_64-linux";
             modules = [
-                ./hardware/home-desktop
-                ./common
+                ./hardware/desktop.nix
+                ./config.nix
             ];
         };
     };
