@@ -75,6 +75,7 @@
         htop
         tmux
         neovim
+        opencode
 
         # gui applications
         emacs
