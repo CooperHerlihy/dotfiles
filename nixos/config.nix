@@ -84,20 +84,6 @@
         fzf
         htop
 
-        # dev
-        gcc
-        cmake
-        gdb
-        lldb
-        clang-tools
-        valgrind
-        perf
-        ghc
-        cabal-install
-        haskell-language-server
-        renderdoc
-        vulkan-tools
-
         # terminal
         tmux
         neovim
