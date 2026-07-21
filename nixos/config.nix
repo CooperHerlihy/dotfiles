@@ -83,6 +83,7 @@
         fd
         fzf
         htop
+        python3
 
         # terminal
         tmux
