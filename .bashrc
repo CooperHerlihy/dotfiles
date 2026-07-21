@@ -7,6 +7,7 @@ alias l='ls -lFh --color=auto'
 
 alias tm='tmux attach || tmux new'
 alias nv='nvim'
+alias nd='nix develop'
 
 DEFAULT='\[\e[0m\]'
 ACCENT1='\[\e[38;2;222;177;255m\]'
