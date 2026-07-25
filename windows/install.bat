@@ -1,19 +1,15 @@
 @echo off
+set "REPO_ROOT=%~dp0.."
 
 powershell -Command "[Environment]::SetEnvironmentVariable('PATH', '%USERPROFILE%\scripts;' + [Environment]::GetEnvironmentVariable('PATH','User'), 'User')"
 
-if exist "%USERPROFILE%\scripts" (
-    rmdir /s /q "%USERPROFILE%\scripts"
-)
-mklink /j "%USERPROFILE%\scripts" "scripts-win"
+if exist "%USERPROFILE%\scripts" rmdir /s /q "%USERPROFILE%\scripts"
+mklink /j "%USERPROFILE%\scripts" "%REPO_ROOT%\windows\scripts"
 
-if exist "%APPDATA%\.emacs.d" (
-    rmdir /s /q "%ADDPATA%\.emacs.d"
-)
-mklink /j "%APPDATA%\.emacs.d" "emacs"
+if exist "%APPDATA%\.emacs.d" rmdir /s /q "%APPDATA%\.emacs.d"
+mklink /j "%APPDATA%\.emacs.d" "%REPO_ROOT%\.config\emacs"
 
+if exist "%LOCALAPPDATA%\nvim" rmdir /s /q "%LOCALAPPDATA%\nvim"
+mklink /j "%LOCALAPPDATA%\nvim" "%REPO_ROOT%\.config\nvim"
 
-if exist "%LOCALAPPDATA%\nvim" (
-    rmdir /s /q "%LOCALADDPATA%\nvim"
-)
-mklink /j "%LOCALAPPDATA%\nvim" "nvim"
+echo Dotfiles installed successfully.
