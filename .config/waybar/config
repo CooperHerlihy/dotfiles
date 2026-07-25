@@ -1,0 +1,175 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 0,
+    "margin-top": 0,
+    "margin-bottom": 0,
+    "margin-left": 0,
+    "margin-right": 0,
+        "modules-left": [
+        "group/system",
+        "mpris"
+    ],
+    "modules-center": [
+        "clock"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "custom/notification",
+        "tray",
+        "custom/power"
+    ],
+
+    "custom/power": {
+        "format": "",
+        "tooltip": false,
+        "on-click": "wlogout",
+        "on-click-right": ""
+    },
+
+    "hyprland/workspaces": {
+        "all-outputs": true,
+        "persistent-workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": []
+        },
+        "format": "{name}",
+        "format-icons": {
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5",
+            "6": "6",
+            "7": "7",
+            "8": "8"
+        }
+    },
+
+    "hyprland/submap": {
+        "format": "<span style=\"italic\"> {} </span>",
+        "tooltip": false
+    },
+
+    "mpris": {
+        "format": "{player_icon} {artist} - {title}",
+        "format-paused": "{status_icon} <i>{artist} - {title}</i>",
+        "player-icons": {
+            "spotify": ""
+        },
+        "max-length": 40,
+        "tooltip": true,
+        "on-click": "",
+        "on-click-right": ""
+    },
+
+    "hyprland/window": {
+        "format": "{}",
+        "rewrite": {
+            "(.*) - (Neovim|nvim)": "$2 — $1",
+            "(.*) — Mozilla Firefox": " $1",
+            "(.*) — Discord": " $1"
+        },
+        "max-length": 48
+    },
+
+    "clock": {
+        "format": "  {:%Y-%m-%d %a %H:%M}",
+        "tooltip-format": "<big>{:%A %B %d %Y}</big>\n<tt>{calendar}</tt>",
+        "calendar": {
+            "mode": "month",
+            "format": {
+                "months": "<span color='#f2b7ff'><b>{}</b></span>",
+                "days": "<span color='#f9ecff'>{}</span>",
+                "weeks": "<span color='#a488f6'>{}</span>",
+                "weekdays": "<span color='#796d81'>{}</span>",
+                "today": "<span color='#f2b7ff'><b><u>{}</u></b></span>"
+            }
+        },
+        "actions": {
+            "on-click-right": "mode"
+        },
+        "interval": 30
+    },
+
+    "custom/notification": {
+        "tooltip": true,
+        "format": "{icon}",
+        "format-icons": {
+            "notification": "",
+            "none": "",
+            "dnd-notification": "",
+            "dnd-none": ""
+        },
+        "return-type": "json",
+        "exec-if": "which swaync-client",
+        "exec": "swaync-client -swb",
+        "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -d -sw",
+        "escape": true
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume:3}%",
+        "format-muted": " {volume:3}%",
+        "format-icons": {
+            "default": ["", "", "", "", "", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "tooltip-format": "{desc}  [{channel_count}]"
+    },
+
+    "network": {
+        "format-wifi": "  {signalStrength}%",
+        "format-ethernet": "  connected",
+        "format-disconnected": "  disconnected",
+        "tooltip-format": "{ifname}\n{ipaddr}/{cidr}\n⇡{bandwidthUpBytes}  ⇣{bandwidthDownBytes}",
+        "on-click": "nm-connection-editor",
+        "interval": 30
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "temperature",
+            "memory",
+            "cpu"
+        ]
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "tooltip-format": "Load: {load}\nAvg: {avgFrequency}"
+    },
+
+    "memory": {
+        "format": "  {percentage}%",
+        "tooltip-format": "RAM: {used:0.1f}G/{total:0.1f}G\nSwap: {swapUsed:0.1f}G/{swapTotal:0.1f}G"
+    },
+
+    "temperature": {
+        "format": "  {temperatureF}°F",
+        "critical-threshold": 120,
+        "tooltip-format": "CPU temp: {temperatureF}°F"
+    },
+
+    "tray": {
+        "spacing": 8,
+        "icon-size": 18
+    },
+
+    "custom/end": {
+        "format": " ",
+        "tooltip": false
+    }
+}

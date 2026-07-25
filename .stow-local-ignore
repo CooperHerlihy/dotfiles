@@ -1,0 +1,10 @@
+\.git
+\.gitignore
+
+resources
+scripts
+nixos
+windows
+
+^/README.*
+^/LICENSE.*
