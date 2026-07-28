@@ -85,8 +85,14 @@ require("mini.extra").setup()
 require("mini.pick").setup()
 
 local function pick_files(cwd)
+    local cmd
+    if vim.fn.has("win32") == 1 then
+        cmd = {"powershell", "-NoProfile", "-Command", "Get-ChildItem -Recurse -File | Select-Object -ExpandProperty FullName"}
+    else
+        cmd = {"rg", "--files", "--follow", "--hidden", "--glob", "!.git"}
+    end
     return MiniPick.builtin.cli({
-        command = {"rg", "--files", "--follow", "--hidden", "--glob", "!.git"};
+        command = cmd;
     }, {
         source = {
             name = cwd,
