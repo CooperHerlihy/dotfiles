@@ -37,18 +37,10 @@
         extraGroups = [ "wheel" "networkmanager" ];
     };
 
-    programs.bash.interactiveShellInit = ''
-        if [ "$(tty)" = "/dev/tty1" ] && [ -z "$WAYLAND_DISPLAY" ]; then
-            start-hyprland
-        fi
-    '';
-
     nixpkgs.config.allowUnfree = true;
 
-    programs.hyprland = {
-        enable = true;
-        xwayland.enable = true;
-    };
+    services.displayManager.gdm.enable = true;
+    services.desktopManager.gnome.enable = true;
 
     programs.steam.enable = true;
     programs.gamemode.enable = true;
@@ -61,19 +53,13 @@
     ];
 
     environment.systemPackages = with pkgs; [
-        # desktop
-        hyprpaper
-        waybar
-        swaynotificationcenter
-        wofi
+        # terminal apps
         ghostty
-        libnotify
-        brightnessctl
-        playerctl
-        wlogout
-        hyprlock
+        tmux
+        neovim
+        opencode
 
-        # cli
+        # cli tools
         stow
         gnumake
         git
@@ -81,18 +67,11 @@
         unzip
         ripgrep
         fd
-        fzf
         htop
         python3
 
-        # terminal
-        tmux
-        neovim
-        opencode
-
         # gui apps
         emacs
-        vlc
         firefox
         tor-browser
         discord
@@ -107,6 +86,55 @@
         prismlauncher
         nestopia-ue
         zsnes
+    ];
+
+    programs.dconf.profiles.user.databases = [
+    {
+        lockAll = true;
+        settings = {
+            "org/gnome/desktop/input-sources" = {
+                xkb-options = [ "ctrl:nocaps" ];
+            };
+            "org/gnome/desktop/interface" = {
+                color-scheme = "prefer-dark";
+                accent-color = "purple";
+                gtk-theme = "adwaita-dark";
+                font-name = "JetBrains Mono 11";
+                document-font-name = "JetBrains Mono 11";
+                monospace-font-name = "JetBrainsMono Nerd Font Mono 11";
+            };
+            "org/gnome/desktop/background" = {
+                picture-uri = "file://${toString ../resources/tuscany-pixel-art.jpg}";
+                picture-uri-dark = "file://${toString ../resources/tuscany-pixel-art.jpg}";
+                picture-options = "zoom";
+            };
+            "org/gnome/mutter" = {
+                dynamic-workspaces = false;
+            };
+            "org/gnome/mutter/keybindings" = {
+                switch-monitor = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+                toggle-tiled-left = [ "<Super>h" ];
+                toggle-tiled-right = [ "<Super>l" ];
+            };
+            "org/gnome/desktop/wm/preferences" = {
+                num-workspaces = lib.gvariant.mkInt32 4;
+            };
+            "org/gnome/desktop/wm/keybindings" = {
+                minimize = lib.gvariant.mkEmptyArray lib.gvariant.type.string;
+                switch-to-workspace-1 = [ "<Super>u" ];
+                switch-to-workspace-2 = [ "<Super>i" ];
+                switch-to-workspace-3 = [ "<Super>o" ];
+                switch-to-workspace-4 = [ "<Super>p" ];
+                move-to-workspace-1 = [ "<Super><Alt>u" ];
+                move-to-workspace-2 = [ "<Super><Alt>i" ];
+                move-to-workspace-3 = [ "<Super><Alt>o" ];
+                move-to-workspace-4 = [ "<Super><Alt>p" ];
+                maximize = [ "<Super>k" ];
+                unmaximize = [ "<Super>j" ];
+            };
+
+        };
+    }
     ];
 
     system.stateVersion = "25.11";
