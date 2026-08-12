@@ -39,6 +39,10 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    services.fstrim.enable = true;
+
+    programs.dconf.enable = true;
+
     programs.hyprland = {
         enable = true;
         xwayland.enable = true;
@@ -50,6 +54,17 @@
             command = "${pkgs.hyprland}/bin/start-hyprland";
             user = "herlihy";
         };
+    };
+
+    systemd.user.services.waybar = {
+        enable = true;
+        serviceConfig = {
+            ExecStart = "${pkgs.waybar}/bin/waybar";
+            Restart = "always";
+            RestartSec = 1;
+        };
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
     };
 
     programs.steam.enable = true;
@@ -68,11 +83,11 @@
         waybar
         swaynotificationcenter
         hyprlock
-        hyprpolkitagent
         wofi
         ghostty
         libnotify
         playerctl
+        brightnessctl
 
         # cli
         stow

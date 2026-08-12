@@ -8,8 +8,7 @@
     "margin-left": 0,
     "margin-right": 0,
         "modules-left": [
-        "group/system",
-        "mpris"
+        "group/system"
     ],
     "modules-center": [
         "clock"
@@ -25,60 +24,8 @@
     "custom/power": {
         "format": "",
         "tooltip": false,
-        "on-click": "wlogout",
+        "on-click": "systemctl suspend",
         "on-click-right": ""
-    },
-
-    "hyprland/workspaces": {
-        "all-outputs": true,
-        "persistent-workspaces": {
-            "1": [],
-            "2": [],
-            "3": [],
-            "4": [],
-            "5": [],
-            "6": [],
-            "7": [],
-            "8": []
-        },
-        "format": "{name}",
-        "format-icons": {
-            "1": "1",
-            "2": "2",
-            "3": "3",
-            "4": "4",
-            "5": "5",
-            "6": "6",
-            "7": "7",
-            "8": "8"
-        }
-    },
-
-    "hyprland/submap": {
-        "format": "<span style=\"italic\"> {} </span>",
-        "tooltip": false
-    },
-
-    "mpris": {
-        "format": "{player_icon} {artist} - {title}",
-        "format-paused": "{status_icon} <i>{artist} - {title}</i>",
-        "player-icons": {
-            "spotify": ""
-        },
-        "max-length": 40,
-        "tooltip": true,
-        "on-click": "",
-        "on-click-right": ""
-    },
-
-    "hyprland/window": {
-        "format": "{}",
-        "rewrite": {
-            "(.*) - (Neovim|nvim)": "$2 — $1",
-            "(.*) — Mozilla Firefox": " $1",
-            "(.*) — Discord": " $1"
-        },
-        "max-length": 48
     },
 
     "clock": {
@@ -125,7 +72,6 @@
         },
         "scroll-step": 5,
         "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
-        "on-click-right": "pavucontrol",
         "tooltip-format": "{desc}  [{channel_count}]"
     },
 
@@ -134,7 +80,7 @@
         "format-ethernet": "  connected",
         "format-disconnected": "  disconnected",
         "tooltip-format": "{ifname}\n{ipaddr}/{cidr}\n⇡{bandwidthUpBytes}  ⇣{bandwidthDownBytes}",
-        "on-click": "nm-connection-editor",
+        "on-click": "ghostty -e nmtui",
         "interval": 30
     },
 
@@ -166,10 +112,5 @@
     "tray": {
         "spacing": 8,
         "icon-size": 18
-    },
-
-    "custom/end": {
-        "format": " ",
-        "tooltip": false
     }
 }

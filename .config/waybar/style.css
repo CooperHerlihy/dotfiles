@@ -23,16 +23,6 @@ window#waybar {
     color: #a488f6;
 }
 
-/* --- mpris --- */
-#mpris {
-    padding: 0 10px;
-    color: #a488f6;
-}
-
-#mpris.paused {
-    color: #796d81;
-}
-
 /* --- notification --- */
 #custom-notification {
     padding: 0 10px;
