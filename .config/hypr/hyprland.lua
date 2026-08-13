@@ -59,7 +59,7 @@ hl.config({
 
 hl.bind("CTRL + ALT + delete", hl.dsp.exit())
 hl.bind("SUPER + escape", hl.dsp.exec_cmd("systemctl suspend")) -- && hyprlock
-hl.bind("SUPER + Q", hl.dsp.window.kill())
+hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.kill())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
