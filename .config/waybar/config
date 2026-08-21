@@ -77,7 +77,7 @@
 
     "network": {
         "format-wifi": "  {signalStrength}%",
-        "format-ethernet": "  connected",
+        "format-ethernet": "  ethernet",
         "format-disconnected": "  disconnected",
         "tooltip-format": "{ifname}\n{ipaddr}/{cidr}\n⇡{bandwidthUpBytes}  ⇣{bandwidthDownBytes}",
         "on-click": "ghostty -e nmtui",

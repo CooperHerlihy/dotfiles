@@ -49,7 +49,7 @@ hl.config({
     },
 
     cursor = {
-        no_hardware_cursors = true,
+        no_hardware_cursors = false,
         inactive_timeout = 3,
         hide_on_key_press = true,
         hide_on_touch = true,
@@ -110,11 +110,7 @@ hl.window_rule({
     suppress_event = "maximize",
 })
 
-hl.monitor({
-    output = "",
-    mode = "preferred",
-    position = "auto",
-    scale = 1,
-})
 require("hyprland-monitors")
+
+
 
