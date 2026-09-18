@@ -103,7 +103,7 @@
         # terminal
         tmux
         neovim
-        opencode
+        unstable-opencode.opencode
 
         # gui apps
         emacs
