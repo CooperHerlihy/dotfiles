@@ -38,7 +38,7 @@ hl.config({
 
     input = {
         kb_options = "ctrl:nocaps",
-        sensitivity = -0.4,
+        sensitivity = -0.7,
         follow_mouse = 1,
     },
 

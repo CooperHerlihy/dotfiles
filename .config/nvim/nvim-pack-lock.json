@@ -8,6 +8,10 @@
       "rev": "27a3e747a4e603b4121f5759e74020430ec7b7d5",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
+    "nvim-lilypond-suite": {
+      "rev": "76e584bbae1cd3ebab16a48d547cc9b17999628f",
+      "src": "https://github.com/martineausimon/nvim-lilypond-suite"
+    },
     "nvim-lspconfig": {
       "rev": "b80f82f59544f0770981b5a6c7d129ca276dab36",
       "src": "https://github.com/neovim/nvim-lspconfig"

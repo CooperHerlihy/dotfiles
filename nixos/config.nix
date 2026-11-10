@@ -108,13 +108,19 @@
         # gui apps
         emacs
         vlc
+        kdePackages.okular
         firefox
         tor-browser
         discord
-        spotify
         anki
         krita
         aseprite
+
+        # music
+        solfege
+        lilypond
+        musescore
+        spotify
 
         # games
         steam
