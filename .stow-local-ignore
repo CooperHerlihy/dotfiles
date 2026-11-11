@@ -6,5 +6,8 @@ scripts
 nixos
 windows
 
+AGENTS.md
+colorscheme.md
+
 ^/README.*
 ^/LICENSE.*

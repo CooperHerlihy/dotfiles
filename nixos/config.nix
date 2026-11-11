@@ -96,19 +96,16 @@
         gh
         unzip
         ripgrep
-        fd
-        htop
         python3
 
-        # terminal
+        # tui apps
+        htop
         tmux
         neovim
         unstable-opencode.opencode
 
         # gui apps
-        emacs
         vlc
-        kdePackages.okular
         firefox
         tor-browser
         discord
