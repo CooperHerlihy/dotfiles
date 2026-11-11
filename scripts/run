@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]; then
+    echo "Usage: run [command]"
+    exit 1
+fi
+
+hyprctl dispatch "hl.dsp.exec_cmd('$1')"

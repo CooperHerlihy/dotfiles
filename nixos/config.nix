@@ -56,17 +56,6 @@
         };
     };
 
-    systemd.user.services.waybar = {
-        enable = true;
-        serviceConfig = {
-            ExecStart = "${pkgs.waybar}/bin/waybar";
-            Restart = "always";
-            RestartSec = 1;
-        };
-        wantedBy = [ "graphical-session.target" ];
-        partOf = [ "graphical-session.target" ];
-    };
-
     programs.steam.enable = true;
     programs.gamemode.enable = true;
 
@@ -80,14 +69,12 @@
     environment.systemPackages = with pkgs; [
         # desktop
         hyprpaper
-        waybar
-        swaynotificationcenter
-        hyprlock
-        wofi
-        ghostty
-        libnotify
         playerctl
         brightnessctl
+        libnotify
+        swaynotificationcenter
+        wofi
+        ghostty
 
         # cli
         stow
@@ -114,9 +101,9 @@
         aseprite
 
         # music
-        solfege
         lilypond
         musescore
+        solfege
         spotify
 
         # games
