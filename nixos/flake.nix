@@ -15,10 +15,6 @@
                                 system = prev.system;
                                 config.allowUnfree = true; 
                             };
-                            unstable-opencode = import inputs.nixpkgs-unstable-opencode {
-                                system = prev.system;
-                                config.allowUnfree = true; 
-                            };
                         })
                     ];
                 })
