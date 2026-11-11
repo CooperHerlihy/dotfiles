@@ -2,7 +2,6 @@
     inputs = {
         nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
         nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-        nixpkgs-unstable-opencode.url = "github:nixos/nixpkgs/1559d3daa3ecc813a650b79375ea61b6741b8746";
     };
 
     outputs = { self, nixpkgs, ... }@inputs: {

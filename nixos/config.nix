@@ -102,7 +102,7 @@
         htop
         tmux
         neovim
-        unstable-opencode.opencode
+        unstable.opencode
 
         # gui apps
         vlc
