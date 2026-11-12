@@ -57,14 +57,15 @@ hl.config({
 })
 
 hl.bind("CTRL + ALT + delete", hl.dsp.exit())
-hl.bind("SUPER + escape", hl.dsp.exec_cmd("systemctl suspend")) -- && hyprlock
+hl.bind("SUPER + escape", hl.dsp.exec_cmd("systemctl suspend"))
 hl.bind("SUPER + Q", hl.dsp.window.close())
 hl.bind("SUPER + SHIFT + Q", hl.dsp.window.kill())
 hl.bind("SUPER + F", hl.dsp.window.fullscreen({ action = "toggle" }))
 hl.bind("SUPER + SHIFT + F", hl.dsp.window.float({ action = "toggle" }))
 
-hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("wofi --show drun"), { release = true })
+hl.bind("SUPER + SUPER_L", hl.dsp.exec_cmd("ghostty -e bash", { float = true, center = true, }), { release = true })
 hl.bind("SUPER + tab", hl.dsp.exec_cmd("swaync-client -t -sw"))
+hl.bind("SUPER + space", hl.dsp.exec_cmd("wofi --show drun"))
 hl.bind("SUPER + T", hl.dsp.exec_cmd("ghostty"))
 hl.bind("SUPER + W", hl.dsp.exec_cmd("firefox"))
 
