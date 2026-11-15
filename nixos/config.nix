@@ -39,6 +39,21 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    services.openssh = {
+        enable = true;
+        openFirewall = true;
+        settings = {
+            X11Forwarding = true;
+            PermitRootLogin = "no";
+            AllowUsers = [ "herlihy" ];
+            PasswordAuthentication = false;
+            KbdInteractiveAuthentication = false;
+            MaxAuthTries = 3;
+            PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+        };
+        ports = [ 4222 ];
+    };
+
     services.fstrim.enable = true;
 
     programs.dconf.enable = true;
