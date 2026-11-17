@@ -1,0 +1,15 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "diffs": {
+    "single": true,
+    "view": "split"
+  },
+  "keybinds": {
+    "diff.open": "<leader>d",
+    "session.background": "none"
+  },
+  "session": {
+    "sidebar": "hide",
+    "thinking": "show"
+  }
+}
