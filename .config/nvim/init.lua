@@ -117,7 +117,27 @@ map("<leader>c", function() pick_files(vim.fn.stdpath("config")) end, {desc = "S
 
 require("nvim-treesitter.config").setup({
     auto_install = true,
-    highlight = {enable = true},
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+    end,
+})
+
+vim.api.nvim_create_autocmd("User", {
+    pattern = "PackChanged",
+    callback = function(args)
+        local kind = args.data.kind
+        if kind == "update" or kind == "install" then
+            local name = args.data.spec.name
+            if name:find("nvim%-treesitter") then
+                vim.schedule(function()
+                    vim.cmd.TSUpdate()
+                end)
+            end
+        end
+    end,
 })
 
 require("render-markdown").setup({

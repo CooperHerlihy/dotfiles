@@ -4,7 +4,6 @@ M.setColorScheme = function(name, colors)
     vim.g.colors_name = name
 
     vim.cmd("hi clear")
-    vim.cmd("syntax reset")
 
     vim.o.termguicolors = true
     vim.o.background = "dark"
@@ -54,6 +53,38 @@ M.setColorScheme = function(name, colors)
         ["Delimiter"] = {fg = colors.text},
         ["Operator"] = {fg = colors.text},
         ["@variable"] = {fg = colors.text},
+        ["@variable.builtin"] = {fg = colors.accent2},
+        ["@variable.parameter"] = {fg = colors.text},
+        ["@variable.member"] = {fg = colors.text},
+        ["@constant"] = {fg = colors.accent3},
+        ["@constant.builtin"] = {fg = colors.accent3},
+        ["@module"] = {fg = colors.accent2},
+        ["@function"] = {fg = colors.accent2},
+        ["@function.builtin"] = {fg = colors.accent2},
+        ["@method"] = {fg = colors.accent2},
+        ["@constructor"] = {fg = colors.text},
+        ["@type"] = {fg = colors.accent1},
+        ["@type.builtin"] = {fg = colors.accent1},
+        ["@keyword"] = {fg = colors.accent1},
+        ["@keyword.modifier"] = {fg = colors.accent1},
+        ["@keyword.function"] = {fg = colors.accent1},
+        ["@keyword.operator"] = {fg = colors.accent2},
+        ["@keyword.return"] = {fg = colors.accent1},
+        ["@conditional"] = {fg = colors.accent1},
+        ["@repeat"] = {fg = colors.accent1},
+        ["@label"] = {fg = colors.accent1},
+        ["@include"] = {fg = colors.accent1},
+        ["@preproc"] = {fg = colors.accent1},
+        ["@operator"] = {fg = colors.text},
+        ["@punctuation.bracket"] = {fg = colors.text},
+        ["@punctuation.delimiter"] = {fg = colors.text},
+        ["@number"] = {fg = colors.accent3},
+        ["@boolean"] = {fg = colors.accent3},
+        ["@string"] = {fg = colors.accent3},
+        ["@string.escape"] = {fg = colors.accent3},
+        ["@escape"] = {fg = colors.accent3},
+        ["@comment"] = {fg = colors.textDark},
+        ["@error"] = {},
 
         ["Statement"] = {fg = colors.accent1},
         ["Type"] = {fg = colors.accent1},

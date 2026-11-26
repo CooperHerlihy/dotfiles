@@ -21,5 +21,5 @@ Constraints, non-negotiable:
 5. Do not modify the target file or any other implementation file. Do not add
    stubs, TODOs, or scaffolding to make tests compile.
 6. Do not weaken, skip, or delete tests to make them pass.
-7. Run the test suite once. Compile errors and failures are expected and are the
-   point: report each as "possible implementation bug" or "test bug", then stop.
+7. Run the test suite. Compile errors and failures are expected and are the
+   point. Fix bugs in the tests, report bugs in the implementation
